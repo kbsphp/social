@@ -434,26 +434,63 @@
 								<img src="assets/images/profile.jpg">
 							</div>
 							<div class="chat-text">
-								<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here"></textarea>
+								<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here" data-toggle="modal" data-target="#Create-UserPost"></textarea>
 							</div>
 						</div>
 						<div class="for-pop-btn">
-							<span class="icon-btn">
+							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
 								<img src="assets/images/user.png">Photo/Videos
 							</span>
 							
-							<span class="icon-btn">
+							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
 								<img src="assets/images/user.png">Tag Friends
 							</span>
 							
-							<span class="icon-btn">
+							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
 								<img src="assets/images/user.png">Feeling/Activity
 							</span>
 							
 						</div>
 					</div>
 				</div>
-				
+				  <div class="modal fade" id="Create-UserPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							    <div class="modal-dialog" role="document">
+							        <div class="modal-content">
+							            <div class="create-post">
+											<div class="post-hdr">
+												<p>Create post<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+											</div>
+
+											<div class="create-write">
+												<div class="for-type">
+													<div class="icon-img">
+														<img src="/assets/images/profile.jpg" />
+													</div>
+													<div class="chat-text">
+														<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here"></textarea>
+													</div>
+												</div>
+												<div class="for-pop-btn">
+													<span class="icon-btn">
+														<img src="/assets/images/user.png" />Photo/Videos
+													</span>
+													
+													<span class="icon-btn"  data-toggle="modal" data-target="#Create Post">
+														<img src="/assets/images/user.png" />Tag Friends
+													</span>
+													
+													<span class="icon-btn" data-toggle="modal" data-target="#Create Post"s>
+														<img src="/assets/images/user.png" />Feeling/Activity
+													</span>	
+												</div>
+											</div>
+											<div class="share-btn">
+												<button class="btn btn-grey w-100 p-1">Share</button>
+											</div>
+										</div>
+							    	</div>
+							    </div>
+							</div>
 				<div class="post-box">
 					<div class="post-hdr">
 						<div class="icon-img">
