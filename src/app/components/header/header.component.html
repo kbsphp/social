@@ -24,7 +24,7 @@
 							<a href="javascript:void(0)" routerLink="/profile"><img src="assets/images/profile.jpg" /> Sunny</a>
 						</li>
 						<li>
-							<a href="javascript:void(0)" routerLink="/">Home</a>  
+							<a href="javascript:void(0)" routerLink="/home">Home</a>  
 							<div class="mobile-icon">
 								<i class="fas fa-home"></i>
 							</div>
@@ -438,7 +438,7 @@
 									<button class="btn" type="submit">Activity log</button>
 									<button class="btn" type="submit">News Feed preferences</button>
 									<button class="btn" type="submit"><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/setting.html">Settings</a></button>
-									<button class="btn" type="submit">Log Out</button>
+									<button class="btn" type="submit" (click)="logout()">Log Out</button>
 								</div>
 							</div>
 						</div>
@@ -449,7 +449,7 @@
 				<div class="notification-box">
 					
 				</div>
-				
+			
 			</div>
 
 		</div>
