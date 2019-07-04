@@ -82,13 +82,9 @@ export class LoginComponent implements OnInit {
       console.log(input_data)
       this._rememberMe();
       this.data_service.login(input_data).subscribe(response => {
-        console.log(response)
+        console.log(response['error'])
         if(response['error'] == false){
-          // if(this.isRemember == true){
-          //   this.cookieService.set('Email',form.email);
-          //   this.cookieService.set('Password',form.password);
-          // }
-         // this.toastr.successToastr(response['msg']);
+         
           sessionStorage.setItem('token',response['body'][0]['token']);
           sessionStorage.setItem('user_id',response['body'][0]['_id']);
           sessionStorage.setItem('user_name',response['body'][0]['username']);

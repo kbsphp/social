@@ -24,7 +24,7 @@ user_id : any = -1;
   ngOnInit() {
   }
   logout(){
-    console.log(this.user_id)
+    //console.log(this.user_id)
     if(this.user_id != -1){
       this.data_services.logOut().subscribe(response =>{
         if(response['error'] == false){

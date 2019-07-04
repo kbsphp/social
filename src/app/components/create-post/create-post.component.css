@@ -1,0 +1,13 @@
+textarea.msgError {
+    border: solid 1px red !important;
+}
+span.filename {
+    color: #fff;
+}
+#myModal {
+    max-height: 500px;
+    overflow: auto;
+}
+#myModal textarea#comment {
+    color: #fff;
+}
