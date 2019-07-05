@@ -3,6 +3,7 @@ import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular
 import { DataService } from '../../shared/data.service'
 import { from } from 'rxjs';
 import * as emoji from 'node-emoji';
+import { environment } from '../../../environments/environment';
 declare var $;
 
 @Component({
@@ -12,7 +13,10 @@ declare var $;
 })
 export class CreatePostComponent implements OnInit {
   @ViewChild('file') fileupload: ElementRef;
+  base_url: string = "";
+  img_url: string = "";
   user_id:any;
+  profile_picture;
   selectedImage : any;
   attachmentName : any = null
   media_type:any;
@@ -27,18 +31,28 @@ export class CreatePostComponent implements OnInit {
   error:string
   isPostModal : boolean = false;
   error_msg : boolean = false;
+  btnshare:boolean = false;
   constructor(private formBuilder:FormBuilder,private data_service: DataService) { 
-   
-    this.userData=JSON.parse(localStorage.getItem('userData'));
-
     this.postForm = this.formBuilder.group({
       description: [''],
       file: ['']
     });
 
+    this.base_url = environment.base_url;
+    this.img_url = environment.img_url;
+    this.userData=JSON.parse(localStorage.getItem('userData'));
+    this.profile_picture = this.img_url + "" + this.userData['profile_picture'];
+    this.data_service.detectChange().subscribe(()=>{
+    if(localStorage.getItem("updated_pic") != undefined){
+      this.profile_picture = localStorage.getItem("updated_pic") ;
+    }
+    })
   }
 
   ngOnInit() {
+    if(localStorage.getItem("updated_pic") != undefined){
+      this.profile_picture = localStorage.getItem("updated_pic") ;
+    }
   }
 
 
@@ -50,7 +64,7 @@ export class CreatePostComponent implements OnInit {
       temp = evt.emoji.native
     }
     this.postForm.controls['description'].setValue(temp);
-    this.emojiHide=false
+    //this.emojiHide=false
   }
 
  
@@ -74,7 +88,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   savePost(type) {
-  
+    this.btnshare=true;
      let desc= this.postForm.value.description;
       console.log(this.postForm.value)
     let filename=this.postForm.value.file
@@ -134,6 +148,7 @@ export class CreatePostComponent implements OnInit {
               this.msgError=false;
               this.attachmentName='';
               this.isPostModal = false;
+              this.btnshare=false;
             }else{
              //console.log(data['msg']);
              this.error_msg = true;

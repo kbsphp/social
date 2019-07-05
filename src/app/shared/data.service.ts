@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
- 
+import { Subject } from 'rxjs/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,9 @@ headers : any;
   token : any;
   user_id: any = -1;
   base_url: string = "";
+ 
+  public changeSub = new Subject<string>();
+
   constructor(private _http: HttpClient,private http : Http) { 
     this.base_url = environment.base_url;
   }
@@ -27,6 +30,11 @@ headers : any;
   newPostMessageUpdation(message) {
     this.messageSource.next(message);
   }
+
+
+  detectChange():Observable<any>{
+    return this.changeSub.asObservable();
+    }
 
    login(input_data){
     return this.http.post(this.base_url+'login',input_data)
@@ -88,6 +96,17 @@ headers : any;
     return this._http.get(this.base_url+'deleteComment/'+user_id+"/"+cmnt_id+"/"+post_id, httpOptions )
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
+  }
+
+
+  uploadUserProfilePic(formData){
+
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+     const httpOptions = { headers: new HttpHeaders({'authorization': this.token })};
+    return this._http.post(this.base_url+'uploadProfilePic', formData, httpOptions);
+     
   }
 
 

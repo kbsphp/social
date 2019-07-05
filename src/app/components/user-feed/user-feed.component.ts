@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular/forms';
 import { DataService } from '../../shared/data.service'
@@ -15,8 +15,12 @@ import { DatePipe } from '@angular/common';
   
 })
 export class UserFeedComponent implements OnInit {
+  @ViewChild('file') fileupload: ElementRef;
   user_id;
   post_id;
+  userData;
+  profile_picture;
+  file:File;
   base_url: string = "";
   img_url: string = "";
   post_data : any = [];
@@ -32,17 +36,26 @@ export class UserFeedComponent implements OnInit {
     private data_service: DataService,
     private datePipe: DatePipe
     ) {
+      
     this.base_url = environment.base_url;
     this.img_url = environment.img_url;
-
+    this.userData=JSON.parse(localStorage.getItem('userData'));
+    this.profile_picture = this.img_url + "" + this.userData['profile_picture'];
+    this.data_service.detectChange().subscribe(()=>{
+      if(localStorage.getItem("updated_pic") != undefined){
+      this.profile_picture = localStorage.getItem("updated_pic") ;
+      }
+    })
    }
 
   ngOnInit() {
+    if(localStorage.getItem("updated_pic") != undefined){
+      this.profile_picture = localStorage.getItem("updated_pic") ;
+      }
     this.postAllList();
     this.data_service.currentMessage.subscribe
     (message => {
-      console.log(this.user_id)
-      console.log(message)
+
       this.new_post_data.unshift(message);
     })
   }
@@ -115,9 +128,7 @@ export class UserFeedComponent implements OnInit {
       this.data_service.commentList(post_id).subscribe((response) => {
         if(response['error'] == false){
           this.cmnt_data = response['body'];
-      
-          //this.cmnt_data.concat(response['body']);
-          //this.new_cmnt_data = this.cmnt_data;
+      console.log(this.cmnt_data);
         }else{
           console.log(response['msg']);
         }
@@ -145,7 +156,8 @@ export class UserFeedComponent implements OnInit {
         this.isPostComment = true;
         this.data_service.commentOnPost(input_data).subscribe((response) => {
           if(response['error'] == false){
-            this.cmnt_data.unshift(response['body']);
+            console.log(response);
+            this.cmnt_data.push(response['body']);
             this.comment = "";
             this.isPostComment = false;
           }else{
@@ -179,6 +191,48 @@ export class UserFeedComponent implements OnInit {
         console.log('Please check the data and try again!');
       });
     }
+
+
+    fileChange(file) {
+      this.file = file.target.files[0];
+      if(this.file != undefined && this.file != null){
+      var strFileName = this.getFileExtension1(this.file.name);
+      if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg'){
+      console.log('Please select valid profile image.');
+      return;
+      }
+      }else{
+      console.log('Please select profile pic ');
+      return;
+      }
+      var input_data = {
+      "userID": parseInt(this.user_id),
+      "profilePic": this.file == undefined ? "" : this.file
+      }
+      console.log(input_data);
+      const formData = new FormData();
+      formData.append('userID', this.user_id);
+      formData.append('profilePic', input_data.profilePic);
+      this.data_service.uploadUserProfilePic(formData).subscribe((response) => {
+        console.log(response);
+        if(response['error'] == false){
+        this.profile_picture = this.img_url + "" + response['body'][0].profile_picture;
+        console.log(this.profile_picture);
+        localStorage.setItem('updated_pic',this.profile_picture);
+        this.data_service.changeSub.next('change');
+        this.fileupload.nativeElement.value="";
+        console.log("Profile changed.");
+        }else{
+        console.log(response['msg']);
+        }
+        },error =>{
+          console.log(error);
+        });
+      }
+
+      getFileExtension1(filename) {
+        return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename)[0] : undefined;
+        }
  
  
  

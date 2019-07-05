@@ -5,7 +5,7 @@ span.filename {
     color: #fff;
 }
 #myModal {
-    max-height: 500px;
+    max-height: 100vh;
     overflow: auto;
 }
 #myModal textarea#comment {

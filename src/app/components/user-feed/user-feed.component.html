@@ -6,13 +6,16 @@
 					<div class="inner-profile">
 						<button class="btn add"><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
 						<div class="name-blk">
-							<div class="overlay-blk">
-								<img src="assets/images/social-logo2.png">
+							<div class="overlay-blk" (click)=file.click()>
+								<img src="{{profile_picture}}">
 								<div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div>
+								<div class="attach_file" style="display:none">
+									<input id="uploadFile" type="file" accept="image/*"  #file (change)="fileChange($event)" name="file" >
+								  </div>
 							</div>
-							<h3>Kumar</h3>
+							<h3>{{userData.username}}</h3>
 						</div>
 						<div class="update-info">
 							<button class="btn btn-grey">Update Info<span class="badge badge-primary">5</span></button>
@@ -428,7 +431,7 @@
 				<div class="post-box" *ngFor="let post of new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="{{img_url}}{{post.profile_picture}}">
+							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
 							<h1 class="hdg"><a href="">{{post.username}}</a> shared a post.</h1>
@@ -447,9 +450,8 @@
 					<div class="like-data">
 						<div class="like-total">
 							<div class="total-left">
-								<img *ngIf="post.is_likes == '0'" class="for-img" src="assets/images/like.png">
-								<img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										
-								<a *ngIf="post.is_likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
+								<img class="for-img" src="assets/images/like.png">									
+								<a *ngIf="post.likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
 							</div>
 						 <!--	<div class="total-right">
 								<p class="rgt-val">2 shares</p>
@@ -481,7 +483,7 @@
 							<div class="commant-total">
 									<div class="commant-list" *ngFor="let cmnt of cmnt_data">
 											<div class="media">
-												<img src="assets/images/profile.jpg">
+												<img src="{{img_url}}{{cmnt.profile_picture}}">
 												<div class="media-body">
 													 <p>{{cmnt.comment}}</p>
 													 <ul>
@@ -493,7 +495,7 @@
 										</div>
 								<div class="write-commant">
 									<div class="media">
-									  <img src="assets/images/profile.jpg">
+									  <img src="{{profile}}">
 									  <div class="media-body">
 									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
 									   <!-- <span><i class="far fa-smile"></i></span> -->
