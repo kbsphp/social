@@ -17,6 +17,10 @@ headers : any;
   token : any;
   user_id: any = -1;
   base_url: string = "";
+  private loggedIn = new BehaviorSubject<boolean>(false); 
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
+  }
   constructor(private _http: HttpClient,private http : Http) { }
 
    login(input_data){
@@ -30,8 +34,9 @@ headers : any;
     if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){this.user_id = sessionStorage.getItem('user_id');}
     const input_data = {'userID': this.user_id }
     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
-    return this._http.post(this.base_url+'logOut', input_data, httpOptions )
+    return this._http.post('http://35.177.79.248:3021/logOut', input_data, httpOptions )
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {console.log(error);return Observable.throw(error);});
   }
+  
 }

@@ -1,4 +1,4 @@
-<section class="social-header">
+<section *ngIf="checkLoggedId" class="social-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-ld-6 col-xl-6 left-menu">
@@ -8,7 +8,16 @@
 				<div class="search-box">
 					<form>
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search">
+							<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search" name="search_people">
+							 <ul *ngIf="isSearchUser == true">
+						        <ng-container *ngFor="let search of search_user_data;">
+						           <!--  <li (click)="chatUser(search)" *ngIf="search.id != user_id">
+						               
+						            </li> -->
+						             <img src='{{web_url}}/{{search.profile_picture}}' class='picture' alt='' />
+						                <span class='name'>{{search.name | titlecase}}</span>
+						        </ng-container>
+						    </ul>
 							<div class="input-group-append">
 								<button class="btn btn-success" type="submit">Go</button> 
 							</div>
@@ -35,12 +44,12 @@
 								<i class="fas fa-user-friends"></i>
 							</div>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="">Create</a>
 							<div class="mobile-icon">
 								<i class="fas fa-home"></i>
 							</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				

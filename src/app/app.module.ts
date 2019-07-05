@@ -12,13 +12,15 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { DataService } from './shared/data.service';
 import { CookieService } from 'ngx-cookie-service';
+import { FriendListComponent } from './components/friend-list/friend-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     GeneralFeedComponent,
     HeaderComponent,
     UserFeedComponent,
-    LoginComponent
+    LoginComponent,
+    FriendListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     ReactiveFormsModule
   ],
+   entryComponents : [HeaderComponent],
   providers: [DataService,CookieService],
   bootstrap: [AppComponent]
 })
