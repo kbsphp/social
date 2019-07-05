@@ -2930,6 +2930,55 @@ img.img-fluid.in-img {
     font-size: 12px;
 }
 
+#myModal .create-post {
+    margin: 0;
+    border-radius: 0;
+}
+
+.pop-up-error {
+    background: red;
+    padding: 10px;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+}
+#myModal .modal-content emoji-mart > div {
+    width: 100% !important;
+}
+
+.fixed-error{
+    position: fixed;
+    top: 20px;
+    color: #fff;
+    right: 20px;
+    background: red;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.comment-zone{
+    padding: 10px;
+}
+.btn-grey.btn-red {
+    background: red;
+    color: #fff;
+}
+.commnt{
+    font-size: 13px;
+    color: #fff;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+}
+
+
+
+
+
+
+
+
 
 
 

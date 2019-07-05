@@ -74,3 +74,10 @@ button[disabled]{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.wrap-login100 {
+  display: table;
+  margin: 60px auto;
+  background: #fff;
+  padding: 30px;
+}

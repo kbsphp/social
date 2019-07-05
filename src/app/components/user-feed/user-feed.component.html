@@ -373,122 +373,86 @@
 			</div--->
 		</div>
 			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
-				<div class="create-post">
-					<div class="post-hdr">
-						<p>Create post</p>
-					</div>
-				
-					<div class="create-write">
-						<div class="for-type">
-							<div class="icon-img">
-								<img src="assets/images/profile.jpg">
-							</div>
-							<div class="chat-text">
-								<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here" data-toggle="modal" data-target="#Create-UserPost"></textarea>
-							</div>
-						</div>
-						<div class="for-pop-btn">
-							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
-								<img src="assets/images/user.png">Photo/Videos
-							</span>
+				<app-create-post></app-create-post>
 							
-							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
-								<img src="assets/images/user.png">Tag Friends
-							</span>
-							
-							<span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
-								<img src="assets/images/user.png">Feeling/Activity
-							</span>
-							
-						</div>
-					</div>
-				</div>
-				  <div class="modal fade" id="Create-UserPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							    <div class="modal-dialog" role="document">
-							        <div class="modal-content">
-							            <div class="create-post">
-											<div class="post-hdr">
-												<p>Create post<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
-											</div>
-
-											<div class="create-write">
-												<div class="for-type">
-													<div class="icon-img">
-														<img src="/assets/images/profile.jpg" />
-													</div>
-													<div class="chat-text">
-														<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here"></textarea>
-													</div>
-												</div>
-												<div class="for-pop-btn">
-													<span class="icon-btn">
-														<img src="/assets/images/user.png" />Photo/Videos
-													</span>
-													
-													<span class="icon-btn"  data-toggle="modal" data-target="#Create Post">
-														<img src="/assets/images/user.png" />Tag Friends
-													</span>
-													
-													<span class="icon-btn" data-toggle="modal" data-target="#Create Post"s>
-														<img src="/assets/images/user.png" />Feeling/Activity
-													</span>	
-												</div>
-											</div>
-											<div class="share-btn">
-												<button class="btn btn-grey w-100 p-1">Share</button>
-											</div>
-										</div>
-							    	</div>
-							    </div>
-							</div>
-				<div class="post-box">
+				<div class="post-box" *ngFor="let post of new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="assets/images/profile.jpg">
+							<img src="{{img_url}}{{post.profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg"><a href="">Ashwani Sharma</a> shared a post.</h1>
-							<p class="time"><a href="">15 hrs</a></p>
+							<h1 class="hdg"><a href="">{{post.username}}</a> shared a post.</h1>
+							<p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p>
 						</div>
 					</div>
 					
-					<div class="post-des">
-						<p class="des">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+					<div *ngIf="post.post_description != ''" class="post-des">
+						<p class="des">{{convetToEmoji(post.post_description)}}</p>
 					</div>
 					
-					<div class="post-data">
-						<img class="img-fluid" src="assets/images/post.jpg">
+					<div class="post-data" *ngIf="post.post_media != ''">
+						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
 					</div>
 					
 					<div class="like-data">
 						<div class="like-total">
 							<div class="total-left">
-								<img class="for-img" src="assets/images/like.png">										
-								<a class="pop-val" href="">2</a>
+								<img *ngIf="post.is_likes == '0'" class="for-img" src="assets/images/like.png">
+								<img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										
+								<a *ngIf="post.is_likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
 							</div>
-							<div class="total-right">
+						 <!--	<div class="total-right">
 								<p class="rgt-val">2 shares</p>
-							</div>
+							</div> -->
 						</div>
 						
 						<div class="like-actual">
-							<div class="parts">
+							<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
 								<img class="for-img" src="assets/images/like2.png">										
 								<span>Like</span>
 							</div>
-							
-							<div class="parts">
-								<img class="for-img" src="assets/images/like2.png">										
-								<span>Share</span>
+							<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
+								<img class="for-img" src="assets/images/dis-like2.png">										
+								<span>Unlike</span>
 							</div>
 							
-							<div class="parts">
+							<!-- <div class="parts">
 								<img class="for-img" src="assets/images/like2.png">										
+								<span>Share</span>
+							</div> -->
+							
+							<div class="parts" (click)="comment_box(post.id)">
+								<img class="for-img" src="assets/images/chat.png">										
 								<span>Comments</span>
 							</div>
 							
 						</div>
-						
+						  <div *ngIf="isComment == true && post.id==post_id" class="commant-data">
+							<div class="commant-total">
+									<div class="commant-list" *ngFor="let cmnt of cmnt_data">
+											<div class="media">
+												<img src="assets/images/profile.jpg">
+												<div class="media-body">
+													 <p>{{cmnt.comment}}</p>
+													 <ul>
+														   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
+														   
+													</ul>
+												</div>
+											</div>
+										</div>
+								<div class="write-commant">
+									<div class="media">
+									  <img src="assets/images/profile.jpg">
+									  <div class="media-body">
+									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
+									   <!-- <span><i class="far fa-smile"></i></span> -->
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
 					</div>
 					
 				</div>
