@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         "password": this.Form.value.password
       }
       console.log(input_data)
-      this._rememberMe();
+     // this._rememberMe();
       this.data_service.login(input_data).subscribe(response => {
         console.log(response['error'])
         if(response['error'] == false){
