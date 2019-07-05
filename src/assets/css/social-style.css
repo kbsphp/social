@@ -771,7 +771,11 @@ a {color: #989898;}
     position: relative;
     height: 250px; 
     border: 1spx solid #383f4b;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
 }
+
 .overlay-blk:hover .hover-layer {display: block;}
 .overlay-blk {position: relative;}
 .overlay-blk .hover-layer {

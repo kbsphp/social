@@ -119,5 +119,15 @@ headers : any;
      
   }
 
+  updateUserCoverPhoto(formData){
+
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+     const httpOptions = { headers: new HttpHeaders({'authorization': this.token })};
+    return this._http.post(this.base_url+'updateuser', formData, httpOptions);
+
+  }
+
 
 }

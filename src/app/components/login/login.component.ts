@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
       if (localStorage.getItem('isLoggedin')) {
         console.log("wwwwwwwwwwwwwwwwwwww")
-        this.router.navigate(['profile']);
+        this.router.navigate(['home']);
       }
     
     this.loginData = {}
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('user_id',response['body'][0]['_id']);
           sessionStorage.setItem('user_name',response['body'][0]['username']);
           // this.data_services.changeSub.next('change');
-          this.router.navigate(['profile']);
+          this.router.navigate(['home']);
           localStorage.setItem('isLoggedin', 'true');
           let userObj = {
             username : response.body[0].username,

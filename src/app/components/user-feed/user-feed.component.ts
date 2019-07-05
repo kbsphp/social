@@ -192,6 +192,47 @@ export class UserFeedComponent implements OnInit {
       });
     }
 
+    coverPhoto(file){
+      this.file = file.target.files[0];
+      console.log(this.file);
+      if(this.file != undefined && this.file != null){
+      var strFileName = this.getFileExtension1(this.file.name);
+      if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg'){
+      console.log('Please select valid profile image.');
+      return;
+      }
+      }else{
+      console.log('Please select profile pic ');
+      return;
+      }
+
+      var input_data = {
+        "userID": parseInt(this.user_id),
+        "cover_pic": this.file == undefined ? "" : this.file
+        }
+        console.log(input_data);
+        const formData = new FormData();
+        formData.append('userID', this.user_id);
+        formData.append('cover_pic', input_data.cover_pic);
+
+        this.data_service.updateUserCoverPhoto(formData).subscribe((response) => {
+          console.log(response);
+          // if(response['error'] == false){
+          // this.profile_picture = this.img_url + "" + response['body'][0].profile_picture;
+          // console.log(this.profile_picture);
+          // localStorage.setItem('updated_pic',this.profile_picture);
+          // this.data_service.changeSub.next('change');
+          // this.fileupload.nativeElement.value="";
+          // console.log("Profile changed.");
+          // }else{
+          // console.log(response['msg']);
+          // }
+          },error =>{
+            console.log(error);
+          });
+
+    }
+
 
     fileChange(file) {
       this.file = file.target.files[0];
