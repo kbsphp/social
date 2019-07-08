@@ -32,6 +32,7 @@ export class CreatePostComponent implements OnInit {
   isPostModal : boolean = false;
   error_msg : boolean = false;
   btnshare:boolean = false;
+  isCLicked:string="";
   constructor(private formBuilder:FormBuilder,private data_service: DataService) { 
     this.postForm = this.formBuilder.group({
       description: [''],
@@ -79,12 +80,15 @@ export class CreatePostComponent implements OnInit {
     //this.postForm.reset();
     this.attachmentName='';
     this.isPostModal = false;
+    this.isCLicked="";
   }
 
 
   open_modal(){
     this.error_msg = false;
    this.isPostModal = true;
+   this.btnshare=false;
+   this.isCLicked="modal-backdrop fade show";
   }
 
   savePost(type) {
@@ -100,6 +104,7 @@ export class CreatePostComponent implements OnInit {
         this.error_msg = false;
         console.log('please write or select file');
         this.error='please write text or select file'
+        this.btnshare=false;
         return;
       }
      // console.log(this.file);
@@ -149,6 +154,7 @@ export class CreatePostComponent implements OnInit {
               this.attachmentName='';
               this.isPostModal = false;
               this.btnshare=false;
+              this.isCLicked= "";
             }else{
              //console.log(data['msg']);
              this.error_msg = true;
@@ -168,6 +174,10 @@ export class CreatePostComponent implements OnInit {
 
 getFileExtension1(filename) {
   return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename)[0] : undefined;
+}
+
+onPostChange(){
+  this.btnshare=false;
 }
 
 

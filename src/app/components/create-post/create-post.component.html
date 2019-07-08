@@ -45,7 +45,7 @@
                   </div>
                   <div class="chat-text">
                     <textarea class="form-control" [ngClass]="{'msgError': msgError?msgError:''}"
-                    rows="5" id="comment"  #description formControlName="description" placeholder="Write Something here"></textarea>
+                    rows="5" id="comment" (input)="onPostChange()"  #description formControlName="description" placeholder="Write Something here"></textarea>
                   </div>
                 </div>
                 <div class="for-pop-btn">
@@ -84,3 +84,4 @@
         
         </form>
       </div>
+      <div class="for-popup-layer" [ngClass]="isCLicked ? isCLicked :''"></div>

@@ -3,6 +3,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="top-profile-blk">
+					<div class="cover-pic">
+						<img class="" src="{{cover_pic}}" alt="Cover Photo"/>
+					</div>
 					<div class="inner-profile">
 						<button class="btn add" (click)=filecover.click()><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
 						<div class="attach_file" style="display:none">
@@ -10,7 +13,7 @@
 						  </div>
 						<div class="name-blk">
 							<div class="overlay-blk" (click)=file.click()>
-								<img src="{{profile_picture}}">
+								<img src="{{profile_picture}}" alt="profile-pic">
 								<div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div>
@@ -18,7 +21,7 @@
 									<input id="uploadFile" type="file" accept="image/*"  #file (change)="fileChange($event)" name="file" >
 								  </div>
 							</div>
-							<h3>{{userData.username}}</h3>
+							<h3>{{username}}</h3>
 						</div>
 						<div class="update-info">
 							<!-- <button class="btn btn-grey">Update Info
@@ -281,7 +284,10 @@
 						<div class="may-know">
 							<div class="top-know">
 								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
-								<a href="" class="see">Add photo</a>
+								<a href="javascript:void(0)" (click)="addphoto.click()" class="see">Add photo</a>
+								<div class="attach_file" style="display:none">
+										<input id="coverPhoto" type="file" accept="image/*"  #addphoto (change)="addPhoto($event)" name="filecover" >
+									  </div>
 							</div>
 							<div class="img-sec">
 								<div class="row">
@@ -379,6 +385,7 @@
 				</div>
 			</div--->
 		</div>
+	
 			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
 				<app-create-post></app-create-post>
 							
@@ -388,7 +395,7 @@
 							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg"><a href="">{{post.username}}</a> shared a post.</h1>
+							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
 							<p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p>
 						</div>
 					</div>
@@ -427,7 +434,7 @@
 								<span>Share</span>
 							</div> -->
 							
-							<div class="parts" (click)="comment_box(post.id)">
+							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 								<img class="for-img" src="assets/images/chat.png">										
 								<span>Comments</span>
 							</div>
@@ -439,7 +446,7 @@
 											<div class="media">
 												<img src="{{img_url}}{{cmnt.profile_picture}}">
 												<div class="media-body">
-													 <p>{{cmnt.comment}}</p>
+													 <p><strong>{{cmnt.username}}</strong>  {{cmnt.comment}}</p>
 													 <ul>
 														   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
 														   
@@ -449,7 +456,7 @@
 										</div>
 								<div class="write-commant">
 									<div class="media">
-									  <img src="{{profile}}">
+									  <img src="{{profile_picture}}">
 									  <div class="media-body">
 									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
 									   <!-- <span><i class="far fa-smile"></i></span> -->
@@ -467,3 +474,41 @@
 	</div>
 </section>
 
+<div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+		
+			  <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					  <div class="create-post">
+				  <div class="post-hdr">
+					<p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
+					<p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
+				</div>
+	
+				  <div class="create-write">
+					<div class="for-type">
+					  <div class="icon-img">
+						
+					  </div>
+					  <div *ngIf="error_msg" class="error-msg">
+					  {{error_msg}}
+					  </div>
+					  <div *ngIf="sucess_msg" class="sucess-msg">
+							{{sucess_msg}}
+							</div>
+					</div>
+					<div class="for-pop-btn">
+				
+					</div>
+				  </div>
+				  
+				</div>
+			
+			  </div>
+			  
+			  
+	
+			</div>
+			
+			
+		  </div>
+		  <div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>

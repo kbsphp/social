@@ -8,6 +8,8 @@ import 'rxjs/add/operator/catch';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +62,19 @@ headers : any;
     .catch((error:Error) => {console.log(error);return Observable.throw(error);});
   }
 
-  
+  GetUserDataByUserId(){
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+      this.user_id = sessionStorage.getItem('user_id');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'user/'+this.user_id, httpOptions )
+    .map((response:Response)=>{const data = response;
+      return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
 
   
   userFeedPost(formData,token) {
@@ -70,8 +84,14 @@ headers : any;
    return this._http.post(this.base_url+'uploadPost', formData, httpOptions);
   }
 
+  generalPostData(pvarId){
+    return this._http.get(this.base_url+'userGeneralPostList/'+pvarId)
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+}
+
   postList(pvarId){
-    return this._http.get(this.base_url+'postList/'+pvarId)
+    return this._http.get(this.base_url+'userpostList/'+pvarId)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }
