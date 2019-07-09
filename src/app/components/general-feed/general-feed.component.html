@@ -71,98 +71,45 @@
 				<div class="row">
 					<div class="col-sm-12 col-md-12 col-lg-8 right-part1">
 						<app-create-post></app-create-post>
-						
-						<div class="post-box">
+						<div class="post-box" *ngFor="let post of post_data;let index">
 							<div class="post-hdr">
 								<div class="icon-img">
-									<img src="assets/images/profile.jpg" />
+									<img src="{{img_url}}{{post.profile_picture}}" />
 								</div>
 								<div class="name-box">
-									<h1 class="hdg"><a href="">Lorem Ipsum</a> shared a post.</h1>
-									<p class="time"><a href="">15 hrs</a></p>
+									<h1 class="hdg"><a href="javascript:void(0)">{{post.username}}</a> </h1>
+									<p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p>
 								</div>
 							</div>
 							
-							<div class="post-des">
-								<p class="des">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+							<div class="post-des" *ngIf="post.post_description != ''">
+								<p class="des">{{convetToEmoji(post.post_description)}}</p>
 							</div>
 							
-							<div class="post-data">
-								<img class="img-fluid" src="assets/images/post.jpg" />
+							<div class="post-data"  *ngIf="post.post_media != ''">
+								<img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
 							</div>
 							
 							<div class="like-data">
 								<div class="like-total">
 									<div class="total-left">
 										<img class="for-img" src="assets/images/like.png" />										
-										<a class="pop-val" href="">2</a>
+										<a class="pop-val" *ngIf="post.likes != '0'" href="javascript:void(0)">{{post.likes}}</a>
 									</div>
-									<div class="total-right">
+									<!-- <div class="total-right">
 										<p class="rgt-val">2 shares</p>
-									</div>
+									</div> -->
 								</div>
 								
 								<div class="like-actual">
-									<div class="parts">
+									<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
 										<img class="for-img" src="assets/images/like2.png" />										
 										<span>Like</span>
 									</div>
-									
-									<div class="parts">
-										<img class="for-img" src="assets/images/like2.png" />										
-										<span>Share</span>
-									</div>
-									
-									<div class="parts">
-										<img class="for-img" src="assets/images/like2.png" />										
-										<span>Comments</span>
-									</div>
-									
-								</div>
-								
-							</div>
-							
-						</div>
-						<div class="post-box">
-							<div class="post-hdr">
-								<div class="icon-img">
-									<img src="assets/images/profile.jpg" />
-								</div>
-								<div class="name-box">
-									<h1 class="hdg"><a href="">Lorem Ipsum</a> shared a post.</h1>
-									<p class="time"><a href="">15 hrs</a></p>
-								</div>
-							</div>
-							
-							<div class="post-des">
-								<p class="des">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
-							</div>
-							
-							<div class="post-data">
-								<img class="img-fluid" src="assets/images/post.jpg" />
-							</div>
-							
-							<div class="like-data">
-								<div class="like-total">
-									<div class="total-left">
-										<img class="for-img" src="assets/images/like.png" />										
-										<a class="pop-val" href="">2</a>
-									</div>
-									<div class="total-right">
-										<p class="rgt-val">2 shares</p>
-									</div>
-								</div>
-								
-								<div class="like-actual">
-									<div class="parts">
-										<img class="for-img" src="assets/images/like2.png" />										
-										<span>Like</span>
-									</div>
-									
-									<div class="parts">
-										<img class="for-img" src="assets/images/like2.png" />										
-										<span>Share</span>
-									</div>
+									<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
+											<img class="for-img" src="assets/images/dis-like2.png">										
+											<span>Unlike</span>
+										</div>
 									
 									<div class="parts">
 										<img class="for-img" src="assets/images/like2.png" />										
@@ -174,70 +121,28 @@
 							</div>
 							<div class="commant-data">
 								<div class="commant-total">
-									<div class="more-relevent">
-										<div class="dropdown">
-											  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Most relevant
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Action</a>
-											    <a class="dropdown-item" href="#">Another action</a>
-											    <a class="dropdown-item" href="#">Something else here</a>
+									<div class="commant-list" *ngFor="let cmt of post.comments">
+										<div class="media">
+										    <img src="{{img_url}}{{cmt.profile_picture}}">
+										    <div class="media-body">
+										         <p><b>{{cmt.username}}</b>{{cmt.comment}}</p>
+										         <ul>
+													<li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
+										        </ul>
+										    </div>
+										</div>
+									</div>
+
+									<div class="write-commant">
+											<div class="media">
+											  <img src="{{img_url}}{{profile_picture}}" alt="user">
+											  <div class="media-body">
+											   <input (keyup.enter)="post_comment(post.id,post.postcomment)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a commant...">
+											   <!-- <span><i class="far fa-smile"></i></span> -->
 											  </div>
 											</div>
-									</div>
-									<div class="write-commant">
-										<div class="media">
-										  <img src="assets/images/profile.jpg">
-										  <div class="media-body">
-										   <input type="text" placeholder="Write a commant...">
-										   <span><i class="far fa-smile"></i></span>
-										  </div>
 										</div>
-									</div>
-
-									<div class="commant-list">
-										<div class="media">
-										    <img src="assets/images/profile.jpg">
-										    <div class="media-body">
-										         <p><b>Lorem Ipsum</b> simply dummy text of the printing</p>
-										         <ul>
-											   		<li><a href="">Like</a></li>
-											   		<li><a href="">Reply</a></li>
-											   		<li><a href="">2d</a></li>
-										        </ul>
-										    </div>
-										</div>
-									</div>
-
-									<div class="commant-list">
-										<div class="media">
-										    <img src="assets/images/profile.jpg">
-										    <div class="media-body">
-										         <p><b>Lorem Ipsum</b> simply dummy text of the printing</p>
-										         <ul>
-											   		<li><a href="">Like</a></li>
-											   		<li><a href="">Reply</a></li>
-											   		<li><a href="">2d</a></li>
-										        </ul>
-										    </div>
-										</div>
-									</div>
-
-
-									<div class="commant-list">
-										<div class="media">
-										    <img src="assets/images/profile.jpg">
-										    <div class="media-body">
-										         <p><b>Lorem Ipsum</b> simply dummy text of the printing</p>
-										         <ul>
-											   		<li><a href="">Like</a></li>
-											   		<li><a href="">Reply</a></li>	
-											   		<li><a href="">2d</a></li>
-										        </ul>
-										    </div>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>				
@@ -326,7 +231,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="Stories">
+						<!-- <div class="Stories">
 							<div class="may-know">
 								<div class="top-know">
 									<p class="hdg">Stories</p>
@@ -358,7 +263,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

@@ -3100,7 +3100,8 @@ section.model-custom .modal {
 }
 
 .like-data .write-commant .media img,
-.like-data .commant-list .media img {
+.like-data .commant-list .media img ,
+.commant-data .media img{
     width: 35px;
     margin-top: 10px;
 }
@@ -3117,7 +3118,8 @@ section.model-custom .modal {
     max-width: max-content;
 }
 
-.like-data .commant-total {
+.like-data .commant-total ,
+.commant-data .commant-total{
     padding-bottom: 10px;
 }
 
@@ -3179,10 +3181,16 @@ section.model-custom .modal {
     transform: translateY(-50%);
     }
 
+    .photo-img {
+        height: 80px;
+        overflow: hidden;
+    }
 
-
-
-
+    .photo-img img{
+        height: 80px;
+        width:100%;
+        object-fit: cover;
+    }
 
 
 
