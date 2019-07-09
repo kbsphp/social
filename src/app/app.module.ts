@@ -15,16 +15,16 @@ import { DataService } from './shared/data.service';
 import { CookieService } from 'ngx-cookie-service';
 
 import { FriendListComponent } from './components/friend-list/friend-list.component';
-<<<<<<< HEAD
 
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
+
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import { DatePipe } from '@angular/common';
-=======
+
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { CreatePostComponent } from './components/create-post/create-post.component'
->>>>>>> b6a74e9b8c7e1399d3e6647eeb90898ffbec392e
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,21 +32,10 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     HeaderComponent,
     UserFeedComponent,
     LoginComponent,
-<<<<<<< HEAD
-
     FriendListComponent,
-
-=======
-    FriendListComponent,
->>>>>>> b6a74e9b8c7e1399d3e6647eeb90898ffbec392e
     CreatePostComponent,
-
-    ProfileComponent
+     ProfileComponent
     
-<<<<<<< HEAD
-
-=======
->>>>>>> b6a74e9b8c7e1399d3e6647eeb90898ffbec392e
   ],
   imports: [
     BrowserModule,
@@ -57,16 +46,15 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     ReactiveFormsModule,
     PickerModule
   ],
-<<<<<<< HEAD
+
 
   //providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},DataService,CookieService],
 
   providers: [DataService,CookieService,DatePipe],
-=======
    entryComponents : [HeaderComponent],
   //providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},DataService,CookieService],
-  providers: [DataService,CookieService],
->>>>>>> b6a74e9b8c7e1399d3e6647eeb90898ffbec392e
+  //providers: [DataService,CookieService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
