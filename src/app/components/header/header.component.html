@@ -13,9 +13,15 @@
 						        <ng-container *ngFor="let search of search_user_data;">
 						           <!--  <li (click)="chatUser(search)" *ngIf="search.id != user_id">
 						               
-						            </li> -->
+									</li> -->
+									<li>
 						             <img src='{{web_url}}/{{search.profile_picture}}' class='picture' alt='' />
+
 						                <span class='name'><a [routerLink]="['/profile',search.id]">{{search.name | titlecase}}</a></span>
+
+										<span class='name'>{{search.name | titlecase}}</span>
+										</li>
+
 						        </ng-container>
 						    </ul>
 							<div class="input-group-append">

@@ -771,7 +771,11 @@ a {color: #989898;}
     position: relative;
     height: 250px; 
     border: 1spx solid #383f4b;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
 }
+
 .overlay-blk:hover .hover-layer {display: block;}
 .overlay-blk {position: relative;}
 .overlay-blk .hover-layer {
@@ -1847,8 +1851,9 @@ div#joinModel .modal-dialog {
     padding: 8px 15px;
     border-radius: 100px;
     font-size: 14px;
-    width: 100%;
-    max-width: 350px;
+    /* width: 100%; */
+    max-width: max-content;
+    /* max-width: 350px; */
     color: #989898;
 }
 .commant-list .media-body p b {
@@ -1859,6 +1864,7 @@ div#joinModel .modal-dialog {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    margin: 0;
 }
 .commant-list .media-body ul li {
     padding: 5px 0px 10px 10px;
@@ -3104,6 +3110,93 @@ section.model-custom .modal {
 .social-header .col.right-menu {padding: 15px 0 0 0;}
 .social-header .left-menu, .social-header .right-menu {padding-top: 10px;}
 }
+
+.like-data .write-commant .media img,
+.like-data .commant-list .media img {
+    width: 35px;
+    margin-top: 10px;
+}
+
+.right-part1 .post-box .post-hdr .name-box {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.like-data .commant-list .media-body p {
+    width: auto;
+    max-width: max-content;
+}
+
+.like-data .commant-total {
+    padding-bottom: 10px;
+}
+
+.top-profile-blk .cover-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.top-profile-blk .cover-pic img{
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    margin: auto;
+}
+
+.top-profile-blk .add {
+    position: relative;
+    z-index: 99;
+}
+
+.social-header .left-menu .search-box form .input-group ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    margin: 0;
+    right: 0;
+}
+
+.friends .details button.btn {
+    margin-right: 5px;
+}
+
+.for-popup-layer{
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    opacity: 1 !important;
+}
+
+.error-msg {
+    color: red !important;
+}
+.sucess-msg {
+    color: #1bdf1b;
+}
+
+.modal-dialog {
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    }
+
+
+
+
+
+
+
 
 /* Media Queries Style */
 
