@@ -1,6 +1,11 @@
 
+
+<!-- <div class="row" *ngFor="let user of user_data">
+	<a [routerLink]="['/profile',user.id]" class="col-4 p-1"> -->
+
 <div class="row" >
 	<a href="#" class="col-4 p-1" *ngFor="let user of user_data">
+
 		<div class="photo-img">
 			<img src="{{img_url}}/{{user.profile_picture}}">
 		</div>

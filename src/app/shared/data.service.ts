@@ -46,6 +46,7 @@ headers : any;
     return this.changeSub.asObservable();
     }
 
+
    login(input_data){
     return this.http.post(this.base_url+'login',input_data)
     .map((response:Response)=>{const data = response.json();return data;})
@@ -61,6 +62,7 @@ headers : any;
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {console.log(error);return Observable.throw(error);});
   }
+
 
   GetUserDataByUserId(){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
@@ -91,6 +93,9 @@ headers : any;
 }
 
   postList(pvarId){
+
+    console.log(pvarId)
+
     return this._http.get(this.base_url+'userpostList/'+pvarId)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
@@ -130,6 +135,14 @@ headers : any;
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
     return this._http.get(this.base_url+'deleteComment/'+user_id+"/"+cmnt_id+"/"+post_id, httpOptions )
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
+
+   friendDetail(user_id){
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'user/'+user_id, httpOptions )
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }

@@ -15,8 +15,16 @@ import { DataService } from './shared/data.service';
 import { CookieService } from 'ngx-cookie-service';
 
 import { FriendListComponent } from './components/friend-list/friend-list.component';
+
+
+
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { ProfileComponent } from './components/profile/profile.component'
+import { DatePipe } from '@angular/common';
+
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { CreatePostComponent } from './components/create-post/create-post.component'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +34,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     LoginComponent,
     FriendListComponent,
     CreatePostComponent,
+     ProfileComponent
     
   ],
   imports: [
@@ -37,9 +46,15 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     ReactiveFormsModule,
     PickerModule
   ],
+
+
+  //providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},DataService,CookieService],
+
+  providers: [DataService,CookieService,DatePipe],
    entryComponents : [HeaderComponent],
   //providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},DataService,CookieService],
-  providers: [DataService,CookieService],
+  //providers: [DataService,CookieService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

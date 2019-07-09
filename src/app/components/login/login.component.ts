@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
       if (localStorage.getItem('isLoggedin')) {
         console.log("wwwwwwwwwwwwwwwwwwww")
         this.router.navigate(['home']);
-      }
+
+      } 
+
     
     this.loginData = {}
     this.Form = fb.group({

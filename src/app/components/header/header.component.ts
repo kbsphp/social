@@ -7,6 +7,7 @@ import * as io from 'socket.io-client';
 import { environment } from '../../../environments/environment';
 import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import * as CryptoJS from 'crypto-js'; 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -82,7 +83,21 @@ user_id : any = -1;
       const input_data = {"userID": parseInt(this.user_id), "search_str": this.search_people}
       this.socket.emit('UsersSearchlist', input_data);
       this.socket.on('GetUsersSearchlist',(response) => {
-      this.search_user_data = response;
+      console.log(response)
+//let other = [];
+      response.map(item => {
+        this.search_user_data=[ {
+          name:item.name,
+          id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
+          profile_picture:item.profile_picture,
+          room:item.room
+        }
+        ]
+      })
+       //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
+      //this.search_user_data = response;
+
+      console.log(JSON.stringify(this.search_user_data))
         //console.log(this.search_user_data)
       },error => {});
     }else{

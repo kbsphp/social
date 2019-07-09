@@ -284,11 +284,21 @@
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
+
 								<p class="hdg"><a href=""><span><i class="fas fa-camera-retro"></i></span>Photos</a></p>
+
+								<!-- <p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p> -->
+
+								<!-- <a href="" class="see">Add photo</a> -->
+							<!-- 	<input type="file" class="see" name="file" > -->
+							<!-- <label for="file_input_id">Add Photo</label>
+                             <input type="file" id="file_input_id"> -->
+
 								<a href="javascript:void(0)" (click)="addphoto.click()" class="see">Add photo</a>
 								<div class="attach_file" style="display:none">
 										<input id="coverPhoto" type="file" accept="image/*"  #addphoto (change)="addPhoto($event)" name="filecover" >
 									  </div>
+
 							</div>
 							<div class="img-sec">
 								<div class="row" >
@@ -316,7 +326,8 @@
 							</div>	
 						</div>
 					</div>
-					<!-- <div class="post-view">
+			<!-- <div class="post-view">
+
 						<div class="friends">
 						    <div class="pic">
 						        <img class="for-img" src="assets/images/friends.jpg">										
@@ -347,7 +358,6 @@
 	
 			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
 				<app-create-post></app-create-post>
-							
 				<div class="post-box" *ngFor="let post of new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
