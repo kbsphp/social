@@ -15,7 +15,7 @@
 						               
 						            </li> -->
 						             <img src='{{web_url}}/{{search.profile_picture}}' class='picture' alt='' />
-						                <span class='name'>{{search.name | titlecase}}</span>
+						                <span class='name'><a [routerLink]="['/profile',search.id]">{{search.name | titlecase}}</a></span>
 						        </ng-container>
 						    </ul>
 							<div class="input-group-append">

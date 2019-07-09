@@ -17,13 +17,12 @@ headers : any;
   token : any;
   user_id: any = -1;
   base_url: string = "";
-<<<<<<< HEAD
+
   private loggedIn = new BehaviorSubject<boolean>(false); 
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
   }
-  constructor(private _http: HttpClient,private http : Http) { }
-=======
+
   constructor(private _http: HttpClient,private http : Http) { 
     this.base_url = environment.base_url;
   }
@@ -34,7 +33,7 @@ headers : any;
   newPostMessageUpdation(message) {
     this.messageSource.next(message);
   }
->>>>>>> e32a8c06059035ac1fdc9d46323f86ce05b44317
+
 
    login(input_data){
     return this.http.post(this.base_url+'login',input_data)
@@ -51,9 +50,7 @@ headers : any;
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {console.log(error);return Observable.throw(error);});
   }
-<<<<<<< HEAD
-  
-=======
+
 
   
   userFeedPost(formData,token) {
@@ -64,7 +61,8 @@ headers : any;
   }
 
   postList(pvarId){
-    return this._http.get(this.base_url+'postList/'+pvarId)
+    console.log(pvarId)
+    return this._http.get(this.base_url+'userpostList/'+pvarId)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }
@@ -101,6 +99,12 @@ headers : any;
     .catch((error:Error) => {return Observable.throw(error);});
   }
 
+   friendDetail(user_id){
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'user/'+user_id, httpOptions )
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
 
->>>>>>> e32a8c06059035ac1fdc9d46323f86ce05b44317
 }

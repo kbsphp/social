@@ -7,26 +7,26 @@
 						<button class="btn add"><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
 						<div class="name-blk">
 							<div class="overlay-blk">
-								<img src="assets/images/social-logo2.png">
+								<img src="{{img_url}}/{{profile_picture}}">
 								<div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div>
 							</div>
-							<h3>Kumar</h3>
+							<h3>{{ username }}</h3>
 						</div>
-						<div class="update-info">
+					<!-- 	<div class="update-info">
 							<button class="btn btn-grey">Update Info<span class="badge badge-primary">5</span></button>
 							<button class="btn btn-grey"><span><i class="fas fa-list"></i></span>Activity log</button>
 						</div>
-					</div>
+ -->					</div>
 				</div>
 				<div class="profile-nav">
 					<ul>
-						<li><a href="">Timeline</a></li>
+					<li><a href="">Timeline</a></li>
 						<li><a href="">About</a></li>
 						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/find-friend.html">Friends</a></li>
 						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/photos.html">Photos</a></li>
-						<li><a href="">Achive</a></li>
+						<li><a href="">Achive</a></li> 
 						<li><a href="javascript:void(0)">More<span><i class="fas fa-caret-down"></i></span></a>
 							<ul class="drop-menu">
 								<li><a href=""><span><i class="fas fa-list"></i></span>Video</a></li>
@@ -40,7 +40,9 @@
 		</div>
 	</div>
 </section>
-<section class="slider-sec">
+
+
+<!-- <section class="slider-sec">
 	<div class="container">
 		<div class="inner-slider">
 			<div class="row">
@@ -164,120 +166,18 @@
 			</div>
 		</div>
 	</div>
-</section>
-
+</section> -->
 
 <section class="content-block">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
-				<div class="contact-left">
-					<div class="left-content">
-						<div class="friends">
-							<div class="pic">
-								<i class="fas fa-map-marker-alt"></i>									
-							</div>
-							
-							<div class="details">
-								<h2 class="details-heading"><a href="#">Sunny, which city do you live in?<span><i class="fas fa-times"></i></span></a></h2>
-								<div class="progress">
-								  <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="location-blk">
-						<div class="friends">
-							<div class="pic">
-								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQBrLPwPhI7nEppP&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa0%2FOpen_Hand_Monument_in_Chandigarh.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQCBznyZkVvYcjT6">									
-							</div>
-							
-							<div class="details">
-								<h2 class="details-heading"><a href="#">Chandigarh, India</a></h2>
-							</div>
-						</div>
-
-						<div class="friends">
-							<div class="pic">
-								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQDPKu_igiXOKwvV&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F60%2FMysore_Palace%252C_India_%2528photo_-_Jim_Ankan_Deka%2529.jpg%2F720px-Mysore_Palace%252C_India_%2528photo_-_Jim_Ankan_Deka%2529.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQAxeD4W6B_SVSBp">									
-							</div>
-							
-							<div class="details">
-								<h2 class="details-heading"><a href="#">Mysore, Karnataka</a></h2>
-							</div>
-						</div>
-
-						<div class="friends">
-							<div class="pic">
-								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQAxluFBYjton0ZE&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F24%2FPCA_Stadium%252C_Mohali_1.jpg%2F720px-PCA_Stadium%252C_Mohali_1.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQBaO05ZTC0AM5RY">									
-							</div>
-							
-							<div class="details">
-								<h2 class="details-heading"><a href="#">Mohali, India</a></h2>
-							</div>
-						</div>
-
-						<div class="input-city">
-							<input type="text" placeholder="Enter Current City" name="">
-						</div>
-
-						<div class="public-btn">
-								<div class="may-know">
-									<div class="top-know">
-										<div class="dropdown">
-											  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    <span><i class="fas fa-globe-asia"></i></span>Public
-											  </button>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item" href="#">Action</a>
-											    <a class="dropdown-item" href="#">Another action</a>
-											    <a class="dropdown-item" href="#">Something else here</a>
-											  </div>
-											</div>
-										<div class="Stories-blk">
-											<a href="" class="btn-grey"> Skip</a>
-											<a href="" class="save-btn btn-grey"> Save</a>
-										</div>
-									</div>
-								</div>
-						</div>
-					</div>
-				</div>
-				<div class="intro-blk">
-					<div class="inner-intro-blk">
-						<div class="heading-intro">
-							<h2><i class="fas fa-globe-asia"></i>Intro</h2>
-						</div>
-						<div class="text-msg">
-							<span><i class="far fa-comment-alt"></i></span>
-							<p>Add a short bio to tell people more about yourself.</p>
-							 <button type="button" class="btn btn-grey">Add Bio</button>
-						</div>
-						<div class="follow-blk">
-							<p><i class="fas fa-rss"></i>Followed by <span>4 people</span></p>
-							<button type="button" class="btn btn-grey">Edit Details</button>
-						</div>
-						<div class="text-msg">
-							<span><i class="far fa-star"></i></span>
-							<p>Showcase what's important to you by adding photos, Pages, groups and more to your featured section on your public profile.</p>
-							 <button type="button" class="btn">Add to Featured</button>
-						</div>
-						<div class="add-insta">
-							<button type="button" class="btn btn-grey"><i class="fas fa-plus"></i>Add Instagram, Websites, Other Links</button>
-						</div>
-					</div>
-				</div>
-
 				<div class="photos-blk">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
 								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
-								<!-- <a href="" class="see">Add photo</a> -->
-							<!-- 	<input type="file" class="see" name="file" > -->
-							<label for="file_input_id">Add Photo</label>
-                             <input type="file" id="file_input_id">
+								<a href="" class="see">Add photo</a>
 							</div>
 							<div class="img-sec">
 								<div class="row">
@@ -343,12 +243,63 @@
 								<a href="" class="see">Find Friends</a>
 							</div>
 							<div class="img-sec">
-								<app-friend-list></app-friend-list>
+								<div class="row" *ngFor="let user of user_data">
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="{{img_url}}/{{user.profile_picture}}">
+										</div>
+										<a href="">{{user.name}}</a>
+									</div>
+									<!-- <div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
+										</div>
+									</div> -->
+									<!-- <div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/29196308_1911137489125289_7472688696366465024_n.jpg?_nc_cat=102&_nc_ht=scontent-hkg3-2.xx&oh=6cc1d9a1ae9a3f7391c9990e013b44d2&oe=5D933D6D">
+										</div>
+									</div> -->
+								</div>
+						<!-- 		<div class="row">
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/31732061_1657054954377181_4600341734193364992_n.jpg?_nc_cat=111&_nc_ht=scontent-hkg3-2.xx&oh=d28bfee7b04359f06771b4a0b1e4f0f8&oe=5D96F7CC">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+								</div> -->
 							</div>	
 						</div>
 					</div>
-				<!-- 	<div class="post-view">
-						<div class="friends">
+					<div class="post-view">
+						<!-- <div class="friends">
 						    <div class="pic">
 						        <img class="for-img" src="assets/images/friends.jpg">										
 						    </div>
@@ -359,8 +310,8 @@
 						    <div class="add-class">
 						        <button type="button" class="btn btn-grey">View</button>
 						    </div>
-						</div>
-					</div> -->
+						</div> -->
+					</div>
 				</div>
 
 				<!---div class="know-you">
@@ -376,19 +327,49 @@
 			</div--->
 		</div>
 			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
-				<app-create-post></app-create-post>
-				<div class="post-box" *ngFor="let post of new_post_data">
+				<div class="create-post">
+					<div class="post-hdr">
+						<p>Create post</p>
+					</div>
+				
+					<div class="create-write">
+						<div class="for-type">
+							<div class="icon-img">
+								<img src="{{img_url}}/{{profile_picture}}">
+							</div>
+							<div class="chat-text">
+								<textarea class="form-control" rows="5" id="comment" placeholder="Write Something here"></textarea>
+							</div>
+						</div>
+						<div class="for-pop-btn">
+							<span class="icon-btn">
+								<img src="assets/images/user.png">Photo/Videos
+							</span>
+							
+							<span class="icon-btn">
+								<img src="assets/images/user.png">Tag Friends
+							</span>
+							
+							<span class="icon-btn">
+								<img src="assets/images/user.png">Feeling/Activity
+							</span>
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="post-box" *ngFor="let post of profile_new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="{{img_url}}{{post.profile_picture}}">
+							<img src="{{img_url}}/{{profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg"><a href="">{{post.username}}</a> shared a post.</h1>
-							<p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p>
+							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
+							<p class="time"><a href="">{{toLocalDate(post.post_create_date)}}</a></p>
 						</div>
 					</div>
 					
-					<div *ngIf="post.post_description != ''" class="post-des">
+					<div class="post-des">
 						<p class="des">{{convetToEmoji(post.post_description)}}</p>
 					</div>
 					
@@ -399,62 +380,35 @@
 					<div class="like-data">
 						<div class="like-total">
 							<div class="total-left">
+							<!-- 	<img class="for-img" src="assets/images/like.png">							 			
+								<a class="pop-val" href="">2</a> -->
 								<img *ngIf="post.is_likes == '0'" class="for-img" src="assets/images/like.png">
 								<img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										
 								<a *ngIf="post.is_likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
 							</div>
-						 <!--	<div class="total-right">
+							<!-- <div class="total-right">
 								<p class="rgt-val">2 shares</p>
 							</div> -->
 						</div>
 						
 						<div class="like-actual">
-							<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
+							<div class="parts">
 								<img class="for-img" src="assets/images/like2.png">										
 								<span>Like</span>
 							</div>
-							<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
-								<img class="for-img" src="assets/images/dis-like2.png">										
-								<span>Unlike</span>
-							</div>
 							
-							<!-- <div class="parts">
+						<!-- 	<div class="parts">
 								<img class="for-img" src="assets/images/like2.png">										
 								<span>Share</span>
 							</div> -->
 							
-							<div class="parts" (click)="comment_box(post.id)">
-								<img class="for-img" src="assets/images/chat.png">										
+							<div class="parts">
+								<img class="for-img" src="assets/images/like2.png">										
 								<span>Comments</span>
 							</div>
 							
 						</div>
-						  <div *ngIf="isComment == true && post.id==post_id" class="commant-data">
-							<div class="commant-total">
-									<div class="commant-list" *ngFor="let cmnt of cmnt_data">
-											<div class="media">
-												<img src="assets/images/profile.jpg">
-												<div class="media-body">
-													 <p>{{cmnt.comment}}</p>
-													 <ul>
-														   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
-														   
-													</ul>
-												</div>
-											</div>
-										</div>
-								<div class="write-commant">
-									<div class="media">
-									  <img src="assets/images/profile.jpg">
-									  <div class="media-body">
-									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
-									   <!-- <span><i class="far fa-smile"></i></span> -->
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					
+						
 					</div>
 					
 				</div>
@@ -462,4 +416,3 @@
 		</div>
 	</div>
 </section>
-

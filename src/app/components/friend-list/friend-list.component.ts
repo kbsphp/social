@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 import { environment } from '../../../environments/environment';
+import * as CryptoJS from 'crypto-js'; 
 @Component({
   selector: 'app-friend-list',
   templateUrl: './friend-list.component.html',
@@ -38,7 +39,17 @@ export class FriendListComponent implements OnInit {
    getAllUser(){
     this.socket.on('updateUsers',(response) => {
       this.socket.emit('UserDetail', this.user_id);
-      this.socket.on('GetUser',(users) => { this.user_data = users;console.log(this.user_data);});
+      this.socket.on('GetUser',(users) => { //this.user_data = users;console.log(this.user_data);
+      	users.map(item => {
+         this.user_data=[ {
+          name:item.name,
+          id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
+          profile_picture:item.profile_picture,
+          room:item.room
+        }
+        ]
+      })
+      });
     });
   }
 

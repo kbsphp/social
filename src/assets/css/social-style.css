@@ -2897,6 +2897,18 @@ img.img-fluid.in-img {
 	box-shadow:none !important;
 	color:#989898;
 }
+label{
+  color: orange;
+  cursor: pointer;
+}
+
+label:hover{
+  text-decoration: underline;
+}
+
+#file_input_id{
+  display:none;
+}
 
 .social-form .rgt-part .dropdown button {
     border: 1px solid #383f4b;
