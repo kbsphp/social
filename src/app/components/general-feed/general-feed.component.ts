@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class GeneralFeedComponent implements OnInit {
   user_id;
- // postcomment;
+//  postcomment;
   post_data : any = [];
   base_url: string = "";
   img_url: string = "";
@@ -120,7 +120,9 @@ export class GeneralFeedComponent implements OnInit {
       this.data_service.commentOnPost(input_data).subscribe((response) => {
         if(response['error'] == false){
           this.post_data[0]['comments'].push(response['body']);
-          pvarCommnet = "";
+          pvarCommnet ="";
+        //  console.log(pvarCommnet);
+          
         }else{
           console.log(response['msg']);
         }

@@ -121,7 +121,7 @@
 							</div>
 							<div class="commant-data">
 								<div class="commant-total">
-									<div class="commant-list" *ngFor="let cmt of post.comments">
+									<div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
 										<div class="media">
 										    <img src="{{img_url}}{{cmt.profile_picture}}">
 										    <div class="media-body">

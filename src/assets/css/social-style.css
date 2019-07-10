@@ -3164,6 +3164,19 @@ section.model-custom .modal {
     z-index: 9999;
     margin: 0;
     right: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.social-header .left-menu .search-box form .input-group ul li span{
+    display: block;
+}
+
+.social-header .left-menu .search-box form .input-group ul li span a{
+    padding: 5px 10px;
+    background: white;
+    font-size: 13px;
+    display: block;
 }
 
 .friends .details button.btn {
