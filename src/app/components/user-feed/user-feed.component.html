@@ -1,3 +1,4 @@
+<div class="main-container">
 <section class="main-body">
 	<div class="container">
 		<div class="row">
@@ -283,7 +284,10 @@
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
+
+								<p class="hdg"><a href=""><span><i class="fas fa-camera-retro"></i></span>Photos</a></p>
+
+								<!-- <p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p> -->
 
 								<!-- <a href="" class="see">Add photo</a> -->
 							<!-- 	<input type="file" class="see" name="file" > -->
@@ -297,57 +301,15 @@
 
 							</div>
 							<div class="img-sec">
-								<div class="row">
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-								</div>
-									<div class="row">
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-								</div>
-									<div class="row">
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-									<div class="col-4 p-1">
-										<div class="photo-img">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/s200x200/49332666_783607065332080_3544663876920410112_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=eeb3f263794c80dc74ea0e7fb8074e7e&oe=5D5D059C">
-										</div>
-									</div>
-								</div>
+								<div class="row" >
+										<ng-container  *ngFor="let media of userMedia;let i=index;">
+												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
+														<div class="photo-img">
+															<img src="{{img_url}}{{media.post_media}}">
+														</div>
+													</div>
+										</ng-container>									
+								</div>								
 							</div>	
 						</div>
 					</div>
@@ -480,7 +442,7 @@
 		</div>
 	</div>
 </section>
-
+</div>
 <div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
 		
 			  <div class="modal-dialog" role="document">

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 //import { ActivatedRoute } from "@angular/router";
+
+import { ActivatedRoute, Router } from '@angular/router';
+
+
+
 import * as CryptoJS from 'crypto-js'; 
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
 import { environment } from '../../../environments/environment';
 import * as io from 'socket.io-client';
-import { ActivatedRoute, Router } from '@angular/router';
+//import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -23,8 +28,10 @@ export class ProfileComponent implements OnInit {
   socket_url: string = "";
    private socket;
    user_data : any = [];
+
   constructor(private activatedRoute:ActivatedRoute,private data_service: DataService,private datePipe: DatePipe,
        private router: Router,) {
+
    this.img_url = environment.img_url;
   // console.log(this.id)
  //  this.getUserDetail()
@@ -38,7 +45,9 @@ export class ProfileComponent implements OnInit {
 
   	 this.id = CryptoJS.AES.decrypt(this.id, 'gurpreet').toString(CryptoJS.enc.Utf8);
   //	 console.log(this.id)
+
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
    this.getUserDetail()
   this.getFriendList()
   if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){

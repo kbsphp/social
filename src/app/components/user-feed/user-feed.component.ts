@@ -5,7 +5,6 @@ import { DataService } from '../../shared/data.service'
 import { from } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import * as emoji from 'node-emoji';
-declare var $;
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-user-feed',
@@ -40,6 +39,7 @@ export class UserFeedComponent implements OnInit {
   sucess_msg:string="";
   isShow="";
   media_type;
+  userMedia:any=[];
 
   constructor(private formBuilder:FormBuilder,
     private data_service: DataService,
@@ -60,6 +60,7 @@ export class UserFeedComponent implements OnInit {
   ngOnInit() {
     this.postAllList();
     this.userDetails();
+    this. getPostMedia();
     this.data_service.currentMessage.subscribe
     (message => {
       this.new_post_data.unshift(message);
@@ -80,6 +81,20 @@ export class UserFeedComponent implements OnInit {
       console.log("Something went wrong");
    })
 
+  }
+
+  getPostMedia(){
+    this.user_id = sessionStorage.getItem('user_id');
+    this.data_service.getPostmedia(this.user_id).subscribe((response) => {
+      if(response['error'] == false){
+       this.userMedia=response['body'];
+       console.log(this.userMedia);
+      }else{
+       console.log(response['msg']);
+      }
+    },error =>{
+      console.log(error);
+    });
   }
   close_modal() {
     this.error_msg = "";
@@ -190,13 +205,14 @@ export class UserFeedComponent implements OnInit {
         this.isPostComment = true;
         this.data_service.commentOnPost(input_data).subscribe((response) => {
           if(response['error'] == false){
-            console.log(response);
+           // console.log(response);
             this.cmnt_data.push(response['body']);
             this.comment = "";
             this.isPostComment = false;
           }else{
             this.isPostComment = false;
-            this.comment_error=response['msg'];
+           // this.comment_error=response['msg'];
+            console.log(response['msg']);
           }
         },error =>{
           this.isPostComment = false;
@@ -232,14 +248,14 @@ export class UserFeedComponent implements OnInit {
       var strFileName = this.getFileExtension1(this.file.name);
       if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg'){
         this.error_msg= "Please select valid profile image.";
-         console.log('Please select valid profile image jpg|jpeg|png');
+         console.log('Please select a valid image type jpg|jpeg|png');
          this.isPostModal=true;
          this.isShow="modal-backdrop fade show";
       return;
       }
       if(this.file.size >2000000 ){
-        this.error_msg="Please select cover image size below 2 MB";
-        console.log("Please select cover image size below 2 MB");
+        this.error_msg="Please select cover image size less than 2 MB";
+        console.log("Please select image size less than 2 MB");
         this.isPostModal=true;
         this.isShow="modal-backdrop fade show";
         return;
@@ -284,14 +300,14 @@ export class UserFeedComponent implements OnInit {
       var strFileName = this.getFileExtension1(this.file.name);
       if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg'){
       this.error_msg="Please select valid profile image.";
-      console.log('Please select valid profile image.');
+      console.log('Please select a valid profile image.');
       this.isPostModal=true;
       this.isShow="modal-backdrop fade show";
       return;
       }
       if(this.file.size >2000000 ){
         this.error_msg="Please select image size below 2 MB";
-        console.log("Please select image size below 2 MB");
+        console.log("Please select image size less than 2 MB");
         this.isPostModal=true;
         this.isShow="modal-backdrop fade show";
         return;
@@ -424,6 +440,8 @@ UpdatePostData(data) {
   this.data_service.newPostMessageUpdation(tempObj);
  
  }
+
+ 
  
  
  

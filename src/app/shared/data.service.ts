@@ -101,6 +101,12 @@ headers : any;
     .catch((error:Error) => {return Observable.throw(error);});
   }
 
+  getPostmedia(pvarId){
+    return this._http.get(this.base_url+'getUsermedia/'+pvarId)
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
+
   likeOnPost(post_id,pvar_user_id){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
       this.token = sessionStorage.getItem('token');
