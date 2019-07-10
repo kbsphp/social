@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+//import { ActivatedRoute } from "@angular/router";
 import * as CryptoJS from 'crypto-js'; 
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
 import { environment } from '../../../environments/environment';
 import * as io from 'socket.io-client';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  id:any
+  id:any 
   user_id:any
   profile_post_data : any = [];
   img_url: string = "";
@@ -22,10 +23,12 @@ export class ProfileComponent implements OnInit {
   socket_url: string = "";
    private socket;
    user_data : any = [];
-  constructor(private activatedRoute:ActivatedRoute,private data_service: DataService,private datePipe: DatePipe) {
+  constructor(private activatedRoute:ActivatedRoute,private data_service: DataService,private datePipe: DatePipe,
+       private router: Router,) {
    this.img_url = environment.img_url;
   // console.log(this.id)
  //  this.getUserDetail()
+ console.log(this.img_url)
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
    }
@@ -35,6 +38,7 @@ export class ProfileComponent implements OnInit {
 
   	 this.id = CryptoJS.AES.decrypt(this.id, 'gurpreet').toString(CryptoJS.enc.Utf8);
   //	 console.log(this.id)
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    this.getUserDetail()
   this.getFriendList()
   if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
@@ -50,8 +54,8 @@ export class ProfileComponent implements OnInit {
   //this.data_service.friendDetail(this.id).subscribe(response => {
   	//console.log(response)
   //})
-    // console.log(this.id)
-        this.data_service.postList(this.id).subscribe((response) => {
+    console.log(this.id)
+      this.data_service.postList(this.id).subscribe((response) => {
       if(response['error'] == false){
         this.profile_post_data = this.profile_post_data.concat(response['body']);
         this.profile_new_post_data = this.profile_post_data;
@@ -90,7 +94,7 @@ export class ProfileComponent implements OnInit {
       this.socket.on('GetUser',(users) => { //this.user_data = users;console.log(this.user_data);
       	console.log(users)
       	users.map(item => {
-         this.user_data=[ {
+         this.user_data=[{
           name:item.name,
           id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
           profile_picture:item.profile_picture,
